@@ -11,15 +11,18 @@ PKG_NAME:=rust-hello-world
 PKG_VERSION:=0.0.1
 PKG_MAINTAINER := Daan Pape <daan@dptechnics.com>
 
+PKG_BUILD_DEPENDS = rust rust-libstd
+
 HOST_BUILD_DEPENDS:=rust/host
 
 include $(INCLUDE_DIR)/package.mk
 include ../../lang/rust/rustc-triple.mk
 
 define Package/rust-hello-world
-  SECTION:=firmware
-  CATEGORY:=Firmware
+  SECTION:=lang
+  CATEGORY:=Languages
   TITLE:=Rust Hello World example
+  DEPENDS:=rust-libstd
 endef
 
 define Package/rust-hello-world/description
@@ -33,7 +36,7 @@ define Build/Prepare
 endef
 
 define Build/Compile
-	cd $(PKG_BUILD_DIR) && cargo rustc --target=$(RUSTC_TARGET_ARCH) --release -- -C linker=$(TARGET_CC_NOCACHE) -C ar=$(TARGET_AR)
+	cd $(PKG_BUILD_DIR) && cargo rustc --target=$(RUSTC_TARGET_ARCH) --release -- -C linker=$(TARGET_CC_NOCACHE) -C ar=$(TARGET_AR) -C prefer-dynamic
 endef
 
 define Package/rust-hello-world/install

@@ -2,6 +2,7 @@
 name = "rust-hello-world"
 version = "0.0.1"
 authors = ["Daan Pape <daan@dptechnics.com>"]
+edition = '2018'
 
 [[bin]]
 name = "main"
