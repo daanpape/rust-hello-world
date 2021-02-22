@@ -36,11 +36,6 @@ define Build/Prepare
 	$(CP) ./src/* $(PKG_BUILD_DIR)/
 endef
 
-define Build/Compile
-	cd $(PKG_BUILD_DIR)
-	rustc --target=$(RUSTC_TARGET_ARCH) $(PKG_BUILD_DIR)/main.rs
-endef
-
 define Package/rust-hello-world/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/main $(1)/usr/sbin/rust-hello-world
