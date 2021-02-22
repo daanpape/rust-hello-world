@@ -26,19 +26,19 @@ define Package/rust-hello-world/description
   Hello World rust example for OpenWRT.
 endef
 	
-CONFIGURE_ARGS = \
-	--host=$(RUSTC_TARGET_ARCH) \
-	--build=$(RUSTC_HOST_ARCH)
-
 define Build/Prepare
 	$(call Build/Prepare/Default)
 	mkdir -p $(PKG_BUILD_DIR)
 	$(CP) ./src/* $(PKG_BUILD_DIR)/
 endef
 
+define Build/Compile
+	cd $(PKG_BUILD_DIR) && cargo rustc --target=$(RUSTC_TARGET_ARCH) --release -- -C linker=$(TARGET_CC_NOCACHE) -C ar=$(TARGET_AR)
+endef
+
 define Package/rust-hello-world/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/main $(1)/usr/sbin/rust-hello-world
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/target/mips-openwrt-linux-musl/release/main $(1)/usr/sbin/rust-hello-world
 endef
 
 $(eval $(call BuildPackage,rust-hello-world))

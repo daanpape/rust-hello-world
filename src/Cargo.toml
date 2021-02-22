@@ -1,0 +1,8 @@
+[package]
+name = "rust-hello-world"
+version = "0.0.1"
+authors = ["Daan Pape <daan@dptechnics.com>"]
+
+[[bin]]
+name = "main"
+path = "main.rs"

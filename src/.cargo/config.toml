@@ -1,2 +1,0 @@
-[target.mips-openwrt-linux-musl]
-rustflags = ["-C", "linker-flavor=ld.lld"]
