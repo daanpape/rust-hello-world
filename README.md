@@ -2,15 +2,13 @@
 
 ## Requirements
 
-For this example to work you need to have the [`lang/rust` package]
-(https://github.com/Itus-Shield/packages/tree/rust/lang/rust) from Grommish.
-This package will build the `rustc` compiler and the `cargo` application from
-source tuned for use with dynamically linked `musl` and softfloat MIPS and
-MIPS64 targets.
+For this example to work you need to have the [`lang/rust` package](https://github.com/Itus-Shield/packages/tree/rust/lang/rust) from Grommish. This package will build the `rustc` compiler
+and the `cargo` application from source tuned for use with dynamically linked
+`musl` and softfloat MIPS and MIPS64 targets.
 
-The second dependency is the [`lang/rust-libstd` package]
-(https://github.com/daanpape/rust-libstd) which takes the precompiled rust 
-`libstd` dynamic library (`*.so`) and packs it in an installable `ipk` package.
+The second dependency is the [`lang/rust-libstd` package](https://github.com/daanpape/rust-libstd)
+which takes the precompiled rust  `libstd` dynamic library (`*.so`) and packs it
+in an installable `ipk` package.
 
 ## Compilation
 
