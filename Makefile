@@ -41,7 +41,7 @@ endef
 
 define Package/rust-hello-world/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/target/mips-openwrt-linux-musl/release/main $(1)/usr/sbin/rust-hello-world
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/target/$(RUSTC_TARGET_ARCH)/release/main $(1)/usr/sbin/rust-hello-world
 endef
 
 $(eval $(call BuildPackage,rust-hello-world))
