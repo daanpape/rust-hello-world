@@ -36,7 +36,9 @@ define Build/Prepare
 endef
 
 define Build/Compile
-	cd $(PKG_BUILD_DIR) && cargo rustc --target=$(RUSTC_TARGET_ARCH) --release -- -C linker=$(TARGET_CC_NOCACHE) -C ar=$(TARGET_AR) -C prefer-dynamic
+	cd $(PKG_BUILD_DIR) && cargo rustc --target=$(RUSTC_TARGET_ARCH) --release -- -C linker=$(TARGET_CC_NOCACHE) -C ar=$(TARGET_AR) -C prefer-dynamic -C opt-level=z -C debuginfo=0
+	$(TOPDIR)/staging_dir/toolchain-*/bin/mips-openwrt-linux-strip -s $(PKG_BUILD_DIR)/target/$(RUSTC_TARGET_ARCH)/release/main
+	stat $(PKG_BUILD_DIR)/target/$(RUSTC_TARGET_ARCH)/release/main
 endef
 
 define Package/rust-hello-world/install
